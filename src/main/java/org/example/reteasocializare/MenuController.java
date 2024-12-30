@@ -1,5 +1,6 @@
 package org.example.reteasocializare;
 
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,9 +8,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.reteasocializare.Domain.Prietenie;
 import org.example.reteasocializare.Domain.Utilizator;
 import org.example.reteasocializare.Domain.UtilizatorCuData;
@@ -83,6 +86,35 @@ public class MenuController implements Observer<UtilizatorEvent> {
     @FXML
     public void initialize() {
         listPrietenii.setItems(prieteniiObs);
+        addHoverAnimation(buttonAddNewFriends);
+        addHoverAnimation(buttonFriendRequests);
+        addHoverAnimation(buttonLogOut);
+        addHoverAnimation(buttonPrevious);
+        addHoverAnimation(buttonNext);
+        addHoverAnimation(buttonBegin);
+        addHoverAnimation(buttonEnd);
+
+    }
+
+    private void addHoverAnimation(Button button) {
+        // Scale up on hover
+        if (button != null) {
+        button.setOnMouseEntered(event -> {
+
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+            scaleTransition.setToX(1.1);
+            scaleTransition.setToY(1.1);
+            scaleTransition.play();
+        });
+
+        // Scale back on exit
+        button.setOnMouseExited(event -> {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+            scaleTransition.setToX(1.0);
+            scaleTransition.setToY(1.0);
+            scaleTransition.play();
+        });
+        }
     }
 
     public void handleAddNewFriends() {
@@ -94,6 +126,8 @@ public class MenuController implements Observer<UtilizatorEvent> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("New Friends");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+            dialogStage.getIcons().add(icon);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
@@ -126,6 +160,8 @@ public class MenuController implements Observer<UtilizatorEvent> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Friend Requests");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+            dialogStage.getIcons().add(icon);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
@@ -151,6 +187,8 @@ public class MenuController implements Observer<UtilizatorEvent> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Chat with " + selected.getUtilizator().getNume() + " " + selected.getUtilizator().getPrenume());
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+            dialogStage.getIcons().add(icon);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
@@ -175,6 +213,8 @@ public class MenuController implements Observer<UtilizatorEvent> {
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Login");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+            dialogStage.getIcons().add(icon);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);

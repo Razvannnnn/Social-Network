@@ -2,7 +2,9 @@ package org.example.reteasocializare;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.example.reteasocializare.Domain.Validators.MessageValidator;
 import org.example.reteasocializare.Domain.Validators.PrietenieValidator;
@@ -40,6 +42,8 @@ public class Start extends Application {
         serviceMessage = new ServiceMessage(messageDBRepository);
         initView(stage);
         stage.setTitle("Retea de socializare");
+        Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+        stage.getIcons().add(icon);
         stage.show();
     }
 
@@ -47,7 +51,6 @@ public class Start extends Application {
         FXMLLoader loader = new FXMLLoader(Start.class.getResource("login.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-
         LoginController controller = loader.getController();
         controller.setNetwork(network, serviceMessage);
     }

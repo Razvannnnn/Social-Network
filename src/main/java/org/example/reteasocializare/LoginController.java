@@ -1,9 +1,11 @@
 package org.example.reteasocializare;
 
+import javafx.animation.Transition;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -14,6 +16,11 @@ import org.example.reteasocializare.Service.ServiceMessage;
 import java.io.IOException;
 import java.util.Set;
 
+import javafx.animation.ScaleTransition;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.util.Duration;
+
 public class LoginController {
 
     private Network network;
@@ -23,7 +30,7 @@ public class LoginController {
     private Button buttonLogIn;
 
     @FXML
-    private Button buttonRegister;
+    private Button buttonCreateAccount;
 
     @FXML
     private TextField textFieldUsername;
@@ -33,8 +40,29 @@ public class LoginController {
 
     @FXML
     public void initialize() {
+        addHoverAnimation(buttonLogIn);
+        addHoverAnimation(buttonCreateAccount);
         textFieldUsername.setPromptText("Username");
         passwordField.setPromptText("Password");
+    }
+
+    private void addHoverAnimation(Button button) {
+        // Scale up on hover
+        button.setOnMouseEntered(event -> {
+
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+            scaleTransition.setToX(1.1);
+            scaleTransition.setToY(1.1);
+            scaleTransition.play();
+        });
+
+        // Scale back on exit
+        button.setOnMouseExited(event -> {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+            scaleTransition.setToX(1.0);
+            scaleTransition.setToY(1.0);
+            scaleTransition.play();
+        });
     }
 
     public void handleLogIn() {
@@ -51,6 +79,8 @@ public class LoginController {
                 Stage dialogStage = new Stage();
                 dialogStage.setTitle("Menu");
                 dialogStage.initModality(Modality.WINDOW_MODAL);
+                Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+                dialogStage.getIcons().add(icon);
 
                 Scene scene = new Scene(root);
                 dialogStage.setScene(scene);
@@ -85,23 +115,21 @@ public class LoginController {
     }
 
     public void handleRegister() {
+        // Your logic to handle registration
+        System.out.println("Register clicked!");
+
         try {
-            FXMLLoader loader = new FXMLLoader(RegisterController.class.getResource("register.fxml"));
-
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("register.fxml"));
             AnchorPane root = loader.load();
-
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Register");
             dialogStage.initModality(Modality.WINDOW_MODAL);
+            Image icon = new Image(getClass().getResourceAsStream("/icon.png"));
+            dialogStage.getIcons().add(icon);
 
             Scene scene = new Scene(root);
             dialogStage.setScene(scene);
-
-            RegisterController registerController = loader.getController();
-            registerController.setNetwork(network);
-
             dialogStage.show();
-
         } catch (IOException e) {
             e.printStackTrace();
         }

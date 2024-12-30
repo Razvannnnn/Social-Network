@@ -1,5 +1,6 @@
 package org.example.reteasocializare;
 
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.reteasocializare.Domain.Utilizator;
 import org.example.reteasocializare.Service.Network;
 import org.example.reteasocializare.Utils.Events.UtilizatorEvent;
@@ -42,8 +44,30 @@ public class NewFriendsController implements Observer<UtilizatorEvent> {
         columnNume.setCellValueFactory(new PropertyValueFactory<Utilizator, String>("Nume"));
         columnPrenume.setCellValueFactory(new PropertyValueFactory<Utilizator, String>("Prenume"));
         tableView.setItems(model);
+        addHoverAnimation(buttonSendFriendRequest);
+        addHoverAnimation(buttonGoBack);
     }
 
+    private void addHoverAnimation(Button button) {
+        // Scale up on hover
+        if (button != null) {
+            button.setOnMouseEntered(event -> {
+
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.1);
+                scaleTransition.setToY(1.1);
+                scaleTransition.play();
+            });
+
+            // Scale back on exit
+            button.setOnMouseExited(event -> {
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.0);
+                scaleTransition.setToY(1.0);
+                scaleTransition.play();
+            });
+        }
+    }
 
     public void initModel() {
         Iterable<Utilizator> utilizatori = network.getNewFriendsForUtilizator(utilizator);

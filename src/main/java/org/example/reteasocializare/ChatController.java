@@ -1,5 +1,6 @@
 package org.example.reteasocializare;
 
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.reteasocializare.Domain.Message;
 import org.example.reteasocializare.Domain.Utilizator;
 import org.example.reteasocializare.Service.Network;
@@ -97,6 +99,28 @@ public class ChatController {
 
     @FXML
     public void initialize() {
+        addHoverAnimation(buttonSend);
+        addHoverAnimation(buttonClose);
+    }
 
+    private void addHoverAnimation(Button button) {
+        // Scale up on hover
+        if (button != null) {
+            button.setOnMouseEntered(event -> {
+
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.1);
+                scaleTransition.setToY(1.1);
+                scaleTransition.play();
+            });
+
+            // Scale back on exit
+            button.setOnMouseExited(event -> {
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.0);
+                scaleTransition.setToY(1.0);
+                scaleTransition.play();
+            });
+        }
     }
 }

@@ -6,22 +6,22 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="560.0" styleClass="linear-grad-to-top-right2" stylesheets="@../../../Style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.reteasocializare.NewFriendsController">
+<AnchorPane prefHeight="400.0" prefWidth="560.0" styleClass="left-pane" stylesheets="@../../../Style/style.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.reteasocializare.NewFriendsController">
     <children>
-        <TableView fx:id="tableView" layoutX="29.0" layoutY="54.0" prefHeight="317.0" prefWidth="248.0" style="-fx-background-color: rgba(0, 0, 0, 0.2);">
+        <TableView fx:id="tableView" layoutX="29.0" layoutY="54.0" prefHeight="317.0" prefWidth="311.0" style="-fx-background-color: rgba(0, 0, 0, 0.2);">
             <columns>
-                <TableColumn fx:id="columnPrenume" prefWidth="120.33334350585938" text="Prenume" />
-                <TableColumn fx:id="columnNume" prefWidth="126.0" text="Nume" />
+                <TableColumn fx:id="columnPrenume" prefWidth="153.66665077209473" text="Prenume" />
+                <TableColumn fx:id="columnNume" prefWidth="171.6666717529297" text="Nume" />
             </columns>
         </TableView>
-        <Text layoutX="75.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Find New Friends">
+        <Text fill="WHITE" layoutX="115.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="page-title" text="Find New Friends">
             <font>
                 <Font size="20.0" />
             </font>
         </Text>
-        <VBox alignment="CENTER" layoutX="321.0" layoutY="57.0" prefHeight="305.0" prefWidth="202.0">
+        <VBox alignment="CENTER" layoutX="349.0" layoutY="57.0" prefHeight="305.0" prefWidth="203.0">
             <children>
-                <Button fx:id="buttonSendFriendRequest" mnemonicParsing="false" onAction="#handleSendFriendRequest" text="Send Friend Request">
+                <Button fx:id="buttonSendFriendRequest" mnemonicParsing="false" onAction="#handleSendFriendRequest" styleClass="menu-button" text="Send Friend Request">
                     <VBox.margin>
                   <Insets bottom="25.0" />
                     </VBox.margin>
@@ -29,7 +29,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="buttonGoBack" mnemonicParsing="false" onAction="#handleGoBack" text="Go Back">
+                <Button fx:id="buttonGoBack" mnemonicParsing="false" onAction="#handleGoBack" styleClass="close-button" text="Go Back">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

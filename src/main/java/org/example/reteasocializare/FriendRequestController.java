@@ -1,5 +1,6 @@
 package org.example.reteasocializare;
 
+import javafx.animation.ScaleTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.example.reteasocializare.Domain.Utilizator;
 import org.example.reteasocializare.Service.Network;
 import org.example.reteasocializare.Utils.Events.UtilizatorEvent;
@@ -52,6 +54,12 @@ public class FriendRequestController implements Observer<UtilizatorEvent> {
     Button buttonBack;
 
     @FXML
+    Button buttonAccept;
+
+    @FXML
+    Button buttonDecline;
+
+    @FXML
     public void initialize() {
         columnNume.setCellValueFactory(new PropertyValueFactory<Utilizator, String>("Nume"));
         columnPrenume.setCellValueFactory(new PropertyValueFactory<Utilizator, String>("Prenume"));
@@ -59,6 +67,30 @@ public class FriendRequestController implements Observer<UtilizatorEvent> {
         columnPrenume2.setCellValueFactory(new PropertyValueFactory<Utilizator, String>("Prenume"));
         tableView.setItems(model);
         tableView2.setItems(model2);
+        addHoverAnimation(buttonBack);
+        addHoverAnimation(buttonAccept);
+        addHoverAnimation(buttonDecline);
+    }
+
+    private void addHoverAnimation(Button button) {
+        // Scale up on hover
+        if (button != null) {
+            button.setOnMouseEntered(event -> {
+
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.1);
+                scaleTransition.setToY(1.1);
+                scaleTransition.play();
+            });
+
+            // Scale back on exit
+            button.setOnMouseExited(event -> {
+                ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), button);
+                scaleTransition.setToX(1.0);
+                scaleTransition.setToY(1.0);
+                scaleTransition.play();
+            });
+        }
     }
 
     public void handleAcceptRequest() {
@@ -79,6 +111,7 @@ public class FriendRequestController implements Observer<UtilizatorEvent> {
 
     public void handleGoBack() {
         Stage stage = (Stage) buttonBack.getScene().getWindow();
+
         stage.close();
         System.out.println("Back to menu");
     }
