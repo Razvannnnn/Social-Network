@@ -12,9 +12,33 @@ Welcome to the **Social Network Application**! This application provides a user-
 - **Manage Friendships**:
   - View a list of friends.
   - Send and receive friend requests.
-  - Get real-time notifications for new friend requests.
+  - View your pending friend requests.
+  - Get notifications of new friend requests.
 - **Chat Room**: Seamless communication through an interactive chat feature.
 - **Database Integration**: Efficient and reliable management of user data and interactions.
+
+---
+
+## Implementation Details
+
+### Database
+
+- **PostgreSQL**: The application uses PostgreSQL for robust and scalable database management.
+
+### Design Patterns
+
+- **Singleton**: Ensures a single instance of critical components such as the database connection manager, providing efficient and centralized access.
+- **Observer**: Implements real-time notifications for friend requests and chat updates.
+- **Decorator**: Enhances user interface components dynamically, ensuring flexibility and reusability.
+
+### Architectural Principles
+
+- **Layered Architecture (Arhitectură Stratificată)**: The application is structured into distinct layers, such as presentation, business logic, and data access, promoting separation of concerns and easier maintenance.
+- **Domain-Driven Design (DDD)**: The application models its core logic and processes based on the business domain, ensuring that features align closely with user requirements.
+
+### Additional Features
+
+- **Paging**: The main menu implements paging to efficiently display a large list of friends without overwhelming the interface.
 
 ---
 
