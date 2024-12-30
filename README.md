@@ -73,10 +73,4 @@ Stay connected with friends through the chat room.
 
 ---
 
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
----
-
 Enjoy connecting with your friends on the Social Network Application!
